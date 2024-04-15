@@ -1,60 +1,34 @@
+version : '3.7'
+
 services:
     nginx:
-        image: nginx:latest
-        deploy:
-            replicas: 3
-            resources:
-                limits:
-                    cpus: "0.1"
-                    memory: 50M
-            restart_policy:
-                condition: on-failure
+        image: ./srcs/nginx
         ports:
-            - "80:80"
-            - "443:443"
+            - '80:80'
+            - '443:443'
+        volumes:
+            - ./srcs/nginx.conf:/etc/nginx/nginx.conf
+            - ./srcs/ssl:/etc/ssl
+            - ./srcs/www:/var/www
         networks:
             - inception
-        configs:
-            - source: httpd-config
-              target: /etc/nginx/conf.d/default.conf
-        secrets:
-            - server-certificate
+
     wordpress:
-        image: wordpress:latest
-        deploy:
-            replicas: 3
-            resources:
-                limits:
-                    cpus: "0.1"
-                    memory: 50M
-            restart_policy:
-                condition: on-failure
+        image: ./srcs/wordpress
+        ports:
+            - "80:80"
+        volumes:
+            - wordpress:/var/www/html
         environment:
             WORDPRESS_DB_HOST: mariadb
             WORDPRESS_DB_USER: root
             WORDPRESS_DB_PASSWORD: password
             WORDPRESS_DB_NAME: wordpress
-        volumes:
-            - wordpress:/var/www/html
-        ports:
-            - "8080:80"
         networks:
             - inception
-        configs:
-            - source: httpd-config
-              target: /etc/apache2/sites-available/000-default.conf
-        secrets:
-            - server-certificate
+
     mariadb:
-        image: mariadb:latest
-        deploy:
-            replicas: 1
-            resources:
-                limits:
-                    cpus: "0.1"
-                    memory: 50M
-            restart_policy:
-                condition: on-failure
+        image: ./srcs/mariadb
         environment:
             MYSQL_ROOT_PASSWORD: password
             MYSQL_DATABASE: wordpress
@@ -62,6 +36,7 @@ services:
             - mariadb:/var/lib/mysql
         networks:
             - inception
+
     ftp:
         image: fauria/vsftpd
         deploy:
@@ -91,5 +66,5 @@ volumes:
         driver: local
 
 networks:
-  inception:
+    inception:
 
