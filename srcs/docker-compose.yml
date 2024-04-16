@@ -19,41 +19,17 @@ services:
             - "80:80"
         volumes:
             - wordpress:/var/www/html
-        environment:
-            WORDPRESS_DB_HOST: mariadb
-            WORDPRESS_DB_USER: root
-            WORDPRESS_DB_PASSWORD: password
-            WORDPRESS_DB_NAME: wordpress
+        env_file:
+            - path: ./.env
         networks:
             - inception
 
     mariadb:
         image: ./srcs/mariadb
-        environment:
-            MYSQL_ROOT_PASSWORD: password
-            MYSQL_DATABASE: wordpress
+        env_file:
+            - path: ./.env
         volumes:
             - mariadb:/var/lib/mysql
-        networks:
-            - inception
-
-    ftp:
-        image: fauria/vsftpd
-        deploy:
-            replicas: 1
-            resources:
-                limits:
-                    cpus: "0.1"
-                    memory: 50M
-            restart_policy:
-                condition: on-failure
-        environment:
-            FTP_USER: user
-            FTP_PASS: password
-        ports:
-            - "21:21"
-        volumes:
-            - ftp:/home/vsftpd
         networks:
             - inception
 
@@ -63,7 +39,8 @@ volumes:
         driver: local
     wordpress:
         name: wordpress
-        driver: local
+        driver: local\
+
 
 networks:
     inception:
