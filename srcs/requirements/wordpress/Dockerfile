@@ -9,7 +9,3 @@ RUN apt -get update && sudo apt-get install php \
 		curl \
 		bash \
 
-
-
-
-
