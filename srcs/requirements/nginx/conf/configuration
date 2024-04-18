@@ -2,16 +2,21 @@ server {
     listen 443 ssl default_server;
     listen [::]:443 ssl default_server;
 
-    ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
     ssl_protocols TLSv1.3;
 
-    root /usr/share/nginx/html;
-    index index.html index.htm;
+    root /var/www/wordpress;
+    index index.html index.htm index.php;
 
-    server_name _;
+    server_name localhost;
     location / {
         try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
     }
 }

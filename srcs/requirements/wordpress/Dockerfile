@@ -7,5 +7,11 @@ RUN apt -get update && sudo apt-get install php \
 		php-cli \
 		wget \
 		curl \
-		bash \
+		bash
+
+EXPOSE 9000
+
+ENTRYPOINT ["tools/entrypoint.sh"]
+
+CMD ["bash"]
 
