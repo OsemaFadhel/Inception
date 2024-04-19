@@ -9,9 +9,17 @@ RUN apt -get update && sudo apt-get install php \
 		curl \
 		bash
 
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+
+RUN chmod +x wp-cli.phar
+
+RUN mv wp-cli.phar /usr/local/bin/wp
+
 EXPOSE 9000
 
-ENTRYPOINT ["tools/entrypoint.sh"]
+COPY /conf/config.php /var/www/config.php
+
+ENTRYPOINT ["tools/wordpress.sh"]
 
 CMD ["bash"]
 

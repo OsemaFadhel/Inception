@@ -11,8 +11,21 @@ else
 	rm -rf latest.tar.gz
 	rm -rf wordpress
 
-	sed -i "s/username_here/$MYSQL_USER/g" wp-config-sample.php
-	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
-	sed -i "s/localhost/$MYSQL_HOSTNAME/g" wp-config-sample.php
-	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
-	cp wp-config-sample.php wp-config.php
+mariadb sleep 10
+
+wp config create	--allow-root \
+					--dbname=$db_name \
+					--dbuser=$db_user \
+					--dbpass=$db_password \
+					--dbhost=mariadb:3306
+					--path='/var/www/wordpress'
+
+wp core install	--allow-root \
+				--url=$DOMAIN_NAME \
+				--title=$title \
+				--admin_user=$wp_admin \
+				--admin_password=$wp_admin_password \
+				--admin_email=$wp_admin_email \
+				--path='/var/www/wordpress'
+
+/usr/sbin/php-fpm7.3 -F

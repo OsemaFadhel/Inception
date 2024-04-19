@@ -2,36 +2,44 @@ version : '3.7'
 
 services:
     nginx:
+        container_name: nginx
         build: srcs/nginx
         ports:
-            - '9000:9000'
-            - '443:443'
+            - '9000'
+            - '443'
         volumes:
             - ./srcs/nginx.conf:/etc/nginx/nginx.conf
             - ./srcs/ssl:/etc/ssl
             - ./srcs/www:/var/www
+        env_file:
+            - path: .env
+        restart : on-failure
         networks:
             - inception
 
     wordpress:
+        container_name: wordpress
         build: srcs/wordpress
         ports:
-            - "9000:9000"
+            - '9000'
         volumes:
             - wordpress:/var/www/html
         env_file:
-            - path: ./.env
+            - path: .env
+        restart : on-failure
         networks:
             - inception
 
     mariadb:
+        container_name: mariadb
         build: srcs/mariadb
         ports:
-            - "3306:3306"
+            - '3306'
         env_file:
-            - path: ./.env
+            - path: .env
         volumes:
             - mariadb:/var/lib/mysql
+        restart : unless-stopped
         networks:
             - inception
 
@@ -39,11 +47,14 @@ volumes:
     mariadb:
         name: mariadb
         driver: local
+        device: '/Users/ofadhel/data/mariadb'
     wordpress:
         name: wordpress
         driver: local\
+        device: '/Users/ofadhel/data/wordpress'
 
 
 networks:
     inception
+    driver: bridge
 
