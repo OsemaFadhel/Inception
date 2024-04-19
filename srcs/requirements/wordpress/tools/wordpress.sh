@@ -5,11 +5,8 @@ then
 	echo "wordpress already downloaded"
 else
 
-	wget http://wordpress.org/latest.tar.gz
-	tar xfz latest.tar.gz
-	mv wordpress/* .
-	rm -rf latest.tar.gz
-	rm -rf wordpress
+	wget wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www
+	tar tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www
 
 mariadb sleep 10
 
