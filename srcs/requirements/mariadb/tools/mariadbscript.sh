@@ -2,13 +2,13 @@
 
 service mysql start
 
-mysql -e "CREATE DATABASE wordpress;"
+mysql -e "CREATE DATABASE \`${db_name}\`;"
 
-mysql -e "CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';"
+mysql -e "CREATE USER \`${db_user}\`@'localhost' IDENTIFIED BY \`${db_password}\`;"
 
-mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'admin'@'localhost';"
+mysql -e "GRANT ALL PRIVILEGES ON \`${db_name}\`.* TO \`${db_user}\`@'%' IDENTIFIED BY '${db_password}';"
 
-mysql -e "ALTER USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin';
+mysql -e "ALTER USER 'admin'@'localhost' IDENTIFIED WITH '${db_password}';"
 
 mysql -e "FLUSH PRIVILEGES;"
 
