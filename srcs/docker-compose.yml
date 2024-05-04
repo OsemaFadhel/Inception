@@ -13,7 +13,7 @@ services:
             - ./srcs/www:/var/www
         env_file:
             - path: .env
-        restart : on-failure
+        restart : unless-stopped
         networks:
             - inception
 
@@ -22,11 +22,13 @@ services:
         build: srcs/wordpress
         ports:
             - '9000'
+        depends_on:
+            - mariadb
         volumes:
             - wordpress:/var/www/html
         env_file:
             - path: .env
-        restart : on-failure
+        restart : unless-stopped
         networks:
             - inception
 
@@ -47,14 +49,14 @@ volumes:
     mariadb:
         name: mariadb
         driver: local
-        device: '/Users/ofadhel/data/mariadb'
+        device: '/home/ofadhel/data/mariadb'
     wordpress:
         name: wordpress
-        driver: local\
-        device: '/Users/ofadhel/data/wordpress'
-
+        driver: local
+        device: '/home/ofadhel/data/wordpress'
 
 networks:
-    inception
-    driver: bridge
+    inception:
+        ipam:
+            driver: default
 
