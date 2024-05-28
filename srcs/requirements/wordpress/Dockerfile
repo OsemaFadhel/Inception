@@ -21,8 +21,6 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 EXPOSE 9000
 
-COPY /conf/config.php /var/www/config.php
-
 ENTRYPOINT ["tools/wordpress.sh"]
 
 CMD ["bash"]
