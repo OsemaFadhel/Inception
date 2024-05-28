@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/05/28 16:11:52 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/05/28 18:02:04 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,5 +41,5 @@ all:
 	./env.sh
 	docker-compose -f srcs/docker-compose.yml up -d
 
-down: docker-compose -f srcs/docker-compose.yml down
+down: docker-compose -f srcs/docker-compose.yml down -v
 		rm -rf srcs/.env
