@@ -6,6 +6,6 @@ COPY conf/configuration.cnf /etc/mysql/mariadb.conf.d/configuration.cnf
 
 EXPOSE 3306
 
-RUN [ "tools/mariadbscript.sh" ]
+COPY tools/mariadbscript.sh mariadbs.sh
 
-CMD ["mariadb"]
+CMD ["mariadbs.sh"]
