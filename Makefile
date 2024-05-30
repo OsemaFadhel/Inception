@@ -6,13 +6,12 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/05/28 18:02:04 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/05/30 18:54:12 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: create_env all down
-
-create_env:
+all:
+	rm -rf srcs/.env
 	@echo "Creating env file..."
 	@touch srcs/.env
 	@echo "CERTS_=/etc/ssl/certs/nginx-selfsigned.crt" >> ./srcs/.env
@@ -35,11 +34,10 @@ create_env:
 	fill_env_var "Enter your wp_admin_email" "WP_ADMIN_EMAIL"; \
 	fill_env_var "Enter your ftp_user" "FTP_USER"; \
 	fill_env_var "Enter your ftp_password" "FTP_PASSWORD"
+	@echo "\033[0;33mCHECK THAT EMAIL IS IN THE RIGHT FORMAT!!!\033[0m"
 	@echo ".env file created successfully."
+	sudo docker-compose -f srcs/docker-compose.yml up -d
 
-all:
-	./env.sh
-	docker-compose -f srcs/docker-compose.yml up -d
-
-down: docker-compose -f srcs/docker-compose.yml down -v
-		rm -rf srcs/.env
+down:
+	sudo docker-compose -f srcs/docker-compose.yml down -v
+	rm -rf srcs/.env
