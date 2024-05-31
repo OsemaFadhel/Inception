@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y nginx \
 
 RUN mkdir -p /etc/nginx/ssl
 
-RUN openssl req -x509 -nodes -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt -subj "/CN=localhost"
+RUN openssl req -x509 -nodes -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt -subj "/CN=ofadhel.42.fr"
 
 COPY /conf/configuration /etc/nginx/sites-available/nginx.conf
 

@@ -5,8 +5,8 @@ services:
         container_name: nginx
         build: requirements/nginx
         ports:
-            - '9000:80'
-            - '443:443'
+            - '9000'
+            - '443'
         volumes:
             - wordpress:/var/www/html
         env_file:
@@ -19,7 +19,7 @@ services:
         container_name: mariadb
         build: requirements/mariadb
         ports:
-            - '3306:3306'
+            - '3306'
         env_file:
             - .env
         volumes:
@@ -32,7 +32,7 @@ services:
         container_name: wordpress
         build: requirements/wordpress
         ports:
-            - '9000:80'
+            - '9000'
         depends_on:
             - mariadb
         volumes:

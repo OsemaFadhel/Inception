@@ -10,13 +10,13 @@ server {
     root /var/www/wordpress;
     index index.html index.htm index.php;
 
-    server_name localhost;
+    server_name ofadhel.42.fr;
     location / {
         try_files $uri $uri/ =404;
     }
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_pass wordpress:9000;
     }
 }

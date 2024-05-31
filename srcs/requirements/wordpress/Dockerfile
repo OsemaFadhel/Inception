@@ -19,7 +19,7 @@ RUN chmod +x wp-cli.phar
 
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-#expose 9000
+EXPOSE 9000
 
 COPY tools/wordpress.sh tools/wordpress.sh
 
