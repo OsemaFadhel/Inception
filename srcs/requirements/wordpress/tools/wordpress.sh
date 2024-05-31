@@ -26,3 +26,6 @@ wp core install	--allow-root \
 				--path='/var/www/wordpress'
 
 /usr/sbin/php-fpm7.3 -F
+
+fi
+

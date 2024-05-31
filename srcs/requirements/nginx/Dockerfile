@@ -7,7 +7,7 @@ RUN mkdir -p /etc/nginx/ssl
 
 RUN openssl req -x509 -nodes -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt -subj "/CN=localhost"
 
-COPY /conf/configuration /etc/nginx/sites-available/default
+COPY /conf/configuration /etc/nginx/sites-available/nginx.conf
 
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 

@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-RUN apt -get update && sudo apt-get install php \
+RUN apt-get update && apt-get install php -y \
 		php \
 		php-cgi \
 		php-mysql \
@@ -19,9 +19,11 @@ RUN chmod +x wp-cli.phar
 
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-EXPOSE 9000
+#expose 9000
 
-ENTRYPOINT ["tools/wordpress.sh"]
+COPY tools/wordpress.sh tools/wordpress.sh
 
-CMD ["bash"]
+RUN chmod +x tools/wordpress.sh
+
+CMD ["tools/wordpress.sh"]
 
