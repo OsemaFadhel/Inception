@@ -6,11 +6,12 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/01 12:22:01 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/01 13:59:25 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
+	rm -rf /home/ofadhel/data/mariadb /home/ofadhel/data/wordpress
 	rm -rf srcs/.env
 	@echo "Creating env file..."
 	@touch srcs/.env
@@ -37,6 +38,14 @@ all:
 	fill_env_var "Enter your ftp_password" "FTP_PASSWORD"
 	@echo "\033[0;33mCHECK THAT EMAIL IS IN THE RIGHT FORMAT!!!\033[0m"
 	@echo ".env file created successfully."
+	mkdir /home/ofadhel/data/mariadb
+	mkdir /home/ofadhel/data/wordpress
+
+	sudo chown -R $(whoami):$(whoami) /home/ofadhel/data/mariadb
+	sudo chown -R $(whoami):$(whoami) /home/ofadhel/data/wordpress
+	sudo chmod -R 755 /home/ofadhel/data/wordpress
+	sudo chmod -R 755 /home/ofadhel/data/mariadb
+	
 	sudo docker-compose -f srcs/docker-compose.yml up -d
 
 down:
