@@ -1,17 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
-service mariadb start
+# Start MariaDB service
+service mysqld start
 
-mariadb -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
+# Create the database if it doesn't exist
+mysqld -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
 
-mariadb -e "CREATE USER IF NOT EXISTS \`${DB_USER}\`@'localhost' IDENTIFIED BY \`${DB_PASSWORD}\`;"
+# Create the user if it doesn't exist
+mysqld -e "CREATE USER IF NOT EXISTS \`${DB_USER}\`@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
 
-mariadb -e "GANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO \`${DB_USER}\`@'%' IDENTIFIED BY '${DB_PASSWORD}';"
+# Grant privileges to the user
+mysqld -e "GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO \`${DB_USER}\`@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
 
-mariadb -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH '${DB_ROOT_PASSWORD}';"
+# Update the root user password
+mysqld -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';"
 
-mariadb -e "FLUSH PRIVILEGES;" -p $DB_ROOT_PASSWORD
+# Flush privileges
+mysqld -e "FLUSH PRIVILEGES;"
 
-mariadb-admin -u root -p $DB_ROOT_PASSWORD shutdown
+# Shutdown the MariaDB server
+mysqladmin -u root -p"${DB_ROOT_PASSWORD}" shutdown
 
-exec mariadb-safe
+# Start MariaDB safely
+exec mysqld_safe
+
