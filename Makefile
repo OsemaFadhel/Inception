@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/05/30 18:54:12 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/01 12:22:01 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ all:
 		echo "$$2=$$value" >> ./srcs/.env; \
 	}; \
 	fill_env_var "Enter your db name" "DB_NAME"; \
+	fill_env_var "Enter your db root password" "DB_ROOT_PASSWORD"; \
 	fill_env_var "Enter your db user" "DB_USER"; \
 	fill_env_var "Enter your db password" "DB_PASSWORD"; \
 	fill_env_var "Enter your wp_title" "WP_TITLE"; \
