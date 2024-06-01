@@ -17,6 +17,4 @@ wp core install	--allow-root \
 				--admin_email=$WP_ADMIN_EMAIL \
 				--path='/var/www/wordpress'
 
-fi
-
 /usr/sbin/php-fpm7.4 -F
