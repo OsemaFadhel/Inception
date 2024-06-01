@@ -2,9 +2,6 @@
 
 sleep 10
 
-sed -i 's/;clear_env = no/clear_env = no/' /etc/php/7.4/fpm/pool.d/www.conf
-sed -i 's/listen = .*/listen = wordpress:9000/' /etc/php/7.4/fpm/pool.d/www.conf
-
 wp config create	--allow-root \
 					--dbname=$DB_NAME \
 					--dbuser=$DB_USER \

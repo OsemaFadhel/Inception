@@ -31,5 +31,7 @@ COPY tools/wordpress.sh tools/wordpress.sh
 
 RUN chmod +x tools/wordpress.sh
 
+COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+
 CMD ["tools/wordpress.sh"]
 
