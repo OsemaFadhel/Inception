@@ -8,7 +8,10 @@ else
 	wget wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www
 	tar tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www
 
-mariadb sleep 10
+sleep 10
+
+sed -i 's/;clear_env = no/clear_env = no/' /etc/php/8.2/fpm/pool.d/www.conf
+sed -i 's/listen = .*/listen = wordpress:9000/' /etc/php/8.2/fpm/pool.d/www.conf
 
 wp config create	--allow-root \
 					--dbname=$DB_NAME \
@@ -25,4 +28,6 @@ wp core install	--allow-root \
 				--admin_email=$WP_ADMIN_EMAIL \
 				--path='/var/www/wordpress'
 
-/usr/sbin/php-fpm7.3 -F
+fi
+
+/usr/sbin/php-fpm8.2 -F

@@ -1,23 +1,22 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install php -y \
-		php \
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y php8.2 \
+		php-fpm \
 		php-cgi \
 		php-mysql \
 		php-cli \
-		wget \
-		curl \
-		bash
+		mariadb-client \
+		wget
 
-RUN wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www
+RUN wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www && \
+	tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www && \
+	rm -rf /var/www/wordpress-6.4.3.tar.gz
 
-RUN tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www
+RUN chown -R root:root /var/www/wordpress
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-
-RUN chmod +x wp-cli.phar
-
-RUN mv wp-cli.phar /usr/local/bin/wp
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
 
 EXPOSE 9000
 
