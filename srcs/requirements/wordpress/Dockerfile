@@ -1,17 +1,17 @@
 FROM debian:bullseye
 
-RUN apt update -y && apt upgrade -y && apt install -y php8.2 \
-		php8.2-mysql \
-		php8.2-intl \
-		php8.2-curl \
-		php8.2-mbstring \
-		php8.2-xml \
-		php8.2-zip \
-		php8.2-ldap \
-		php8.2-gd \
-		php8.2-bz2 \
-		php8.2-sqlite3 \
-		php8.2-redis \
+RUN apt update -y && apt upgrade -y && apt install -y php7.4 \
+		php7.4-mysql \
+		php7.4-intl \
+		php7.4-curl \
+		php7.4-mbstring \
+		php7.4-xml \
+		php7.4-zip \
+		php7.4-ldap \
+		php7.4-gd \
+		php7.4-bz2 \
+		php7.4-sqlite3 \
+		php7.4-redis \
 		mariadb-client \
 		wget
 
