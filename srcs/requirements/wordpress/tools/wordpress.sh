@@ -5,8 +5,8 @@ then
 	echo "wordpress already downloaded"
 else
 
-	wget wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www
-	tar tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www
+	wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www
+	tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www
 
 sleep 10
 
