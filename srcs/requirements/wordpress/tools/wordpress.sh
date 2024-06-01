@@ -1,13 +1,5 @@
 #!/bin/sh
 
-if [ -f ./wp-config.php ]
-then
-	echo "wordpress already downloaded"
-else
-
-	wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www
-	tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www
-
 sleep 10
 
 sed -i 's/;clear_env = no/clear_env = no/' /etc/php/7.4/fpm/pool.d/www.conf

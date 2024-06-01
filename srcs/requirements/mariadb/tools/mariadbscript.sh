@@ -1,17 +1,17 @@
 #!/bin/sh
 
-service mysql start
+service mariadb start
 
-mysql -e "CREATE DATABASE \`${DB_NAME}\`;"
+mariadb -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
 
-mysql -e "CREATE USER \`${DB_USER}\`@'localhost' IDENTIFIED BY \`${DB_PASSWORD}\`;"
+mariadb -e "CREATE USER IF NOT EXISTS \`${DB_USER}\`@'localhost' IDENTIFIED BY \`${DB_PASSWORD}\`;"
 
-mysql -e "GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO \`${DB_USER}\`@'%' IDENTIFIED BY '${DB_PASSWORD}';"
+mariadb -e "GANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO \`${DB_USER}\`@'%' IDENTIFIED BY '${DB_PASSWORD}';"
 
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH '${DB_ROOT_PASSWORD}';"
+mariadb -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH '${DB_ROOT_PASSWORD}';"
 
-mysql -e "FLUSH PRIVILEGES;"
+mariadb -e "FLUSH PRIVILEGES;" -p $DB_ROOT_PASSWORD
 
-mysqladmin -u root -p $DB_ROOT_PASSWORD shutdown
+mariadb-admin -u root -p $DB_ROOT_PASSWORD shutdown
 
-exec mysqld_safe
+exec mariadb-safe

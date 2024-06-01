@@ -6,16 +6,17 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/01 13:59:25 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/01 14:52:09 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
-	rm -rf /home/ofadhel/data/mariadb /home/ofadhel/data/wordpress
-	rm -rf srcs/.env
+	sudo rm -rf /home/ofadhel/data/mariadb /home/ofadhel/data/wordpress
+	sudo rm -rf srcs/.env
 	@echo "Creating env file..."
 	@touch srcs/.env
 	@echo "CERTS_=/etc/ssl/certs/nginx-selfsigned.crt" >> ./srcs/.env
+	@echo "KEYS=/etc/ssl/certs/nginx-selfsigned.key" >> ./srcs/.env
 	@echo "DOMAIN_NAME=ofadhel.42.fr" >> ./srcs/.env
 	@fill_env_var() { \
 		read -p "$$1: " value; \
@@ -45,7 +46,7 @@ all:
 	sudo chown -R $(whoami):$(whoami) /home/ofadhel/data/wordpress
 	sudo chmod -R 755 /home/ofadhel/data/wordpress
 	sudo chmod -R 755 /home/ofadhel/data/mariadb
-	
+
 	sudo docker-compose -f srcs/docker-compose.yml up -d
 
 down:
