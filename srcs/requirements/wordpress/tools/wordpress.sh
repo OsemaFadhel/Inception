@@ -2,6 +2,8 @@
 
 sleep 15
 
+cd /var/www/wordpress
+
 wp config create	--allow-root \
 					--dbname=$DB_NAME \
 					--dbuser=$DB_USER \
