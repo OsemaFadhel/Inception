@@ -5,12 +5,12 @@ service mariadb start
 
 sleep 5
 
-mariadb -e "CREATE DATABASE IF NOT EXISTS \`${db_name}\`;"
-mariadb -e "CREATE USER IF NOT EXISTS \`${db_user}\`@'localhost' IDENTIFIED BY '${db_pwd}';"
-mariadb -e "GRANT ALL PRIVILEGES ON \`${db_name}\`.* TO \`${db_user}\`@'%' IDENTIFIED BY '${db_pwd}';"
-mariadb -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${SQL_ROOT_PASSWORD}';"
+mariadb -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
+mariadb -e "CREATE USER IF NOT EXISTS \`${DB_USER}\`@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
+mariadb -e "GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO \`${DB_USER}\`@'%' IDENTIFIED BY '${DB_PASSWORD}';"
+mariadb -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';"
 mariadb -p1234 -e "FLUSH PRIVILEGES;"
-mariadb-admin -u root -p$SQL_ROOT_PASSWORD shutdown
+mariadb-admin -u root -p$DB_ROOT_PASSWORD shutdown
 
 exec mariadbd-safe
 
