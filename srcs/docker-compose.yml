@@ -45,14 +45,14 @@ volumes:
         name: mariadb
         driver: local
         driver_opts:
-            device: '/home/ofadhel/data/mariadb'
+            device: '/home/${USER}/data/mariadb'
             o: bind
             type: none
     wordpress:
         name: wordpress
         driver: local
         driver_opts:
-            device: '/home/ofadhel/data/wordpress'
+            device: '/home/${USER}/data/wordpress'
             o: bind
             type: none
 
