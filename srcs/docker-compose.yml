@@ -58,5 +58,4 @@ volumes:
 
 networks:
     inception:
-        ipam:
-            driver: default
+        name: inception
