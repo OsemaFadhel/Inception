@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/02 21:11:15 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/02 21:45:29 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ all:
 	sudo chown -R $(whoami):$(whoami) /home/$(USER)/data/wordpress
 	sudo chmod -R 755 /home/$(USER)/data/wordpress
 	sudo chmod -R 755 /home/$(USER)/data/mariadb
-	sed -i "s/user_to_change/${USER}/g" "/srcs/docker-compose.yml"
+	sed -i "s/user_to_change/${USER}/g" "srcs/docker-compose.yml"
 	sudo docker-compose -f srcs/docker-compose.yml up -d
 
 down:
