@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 30
+sleep 15
 
 wp config create	--allow-root \
 					--dbname=$DB_NAME \
