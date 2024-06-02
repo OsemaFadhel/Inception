@@ -6,13 +6,11 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/01 15:34:38 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/02 17:01:38 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all:
-	sudo rm -rf /home/ofadhel/data/mariadb /home/ofadhel/data/wordpress
-	sudo rm -rf srcs/.env
+all: down
 	@echo "Creating env file..."
 	@touch srcs/.env
 	@echo "CERTS_=/etc/ssl/certs/nginx.crt" >> ./srcs/.env
@@ -39,6 +37,7 @@ all:
 	fill_env_var "Enter your ftp_password" "FTP_PASSWORD"
 	@echo "\033[0;33mCHECK THAT EMAIL IS IN THE RIGHT FORMAT!!!\033[0m"
 	@echo ".env file created successfully."
+	
 	mkdir /home/ofadhel/data/mariadb
 	mkdir /home/ofadhel/data/wordpress
 
@@ -50,5 +49,8 @@ all:
 	sudo docker-compose -f srcs/docker-compose.yml up -d
 
 down:
-	sudo docker-compose -f srcs/docker-compose.yml down -v
+	sudo docker stop $(sudo docker ps -qa); sudo docker rm $(sudo docker ps -qa); \
+	sudo docker rmi -f $(sudo docker images -qa); sudo docker volume rm $(sudo docker volume ls -q); \
+	sudo docker network rm $(sudo docker network ls -q) 2>/dev/null
+	sudo rm -rf /home/ofadhel/data/mariadb /home/ofadhel/data/wordpress
 	rm -rf srcs/.env
