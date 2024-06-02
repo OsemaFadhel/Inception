@@ -26,5 +26,9 @@ RUN chmod +x tools/wordpress.sh
 
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
+RUN mkdir /run/php
+
+RUN chmod 755 /run/php
+
 CMD ["tools/wordpress.sh"]
 

@@ -4,4 +4,4 @@ openssl req -x509 -nodes -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/ng
 
 sed -i "s/domain_name/${DOMAIN_NAME}/g" "/etc/nginx/sites-available/nginx.conf"
 
-nginx -g "daeomn off;"
+nginx -g "daemon off;"
