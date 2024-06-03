@@ -6,7 +6,7 @@ RUN apt update -y && apt upgrade -y && apt install -y php7.4 \
 		php-intl \
 		php-curl \
 		mariadb-client \
-		wget \
+		wget
 
 RUN wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www && \
 	tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www && \
