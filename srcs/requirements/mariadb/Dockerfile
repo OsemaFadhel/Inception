@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-RUN apt update -y && apt upgrade -y && apt install -y mariadb-server \
+RUN apt update -y && apt upgrade -y && apt-get install -y mariadb-server \
 	curl
 
 COPY conf/configuration.cnf /etc/mysql/mariadb.conf.d/50-server.cnf

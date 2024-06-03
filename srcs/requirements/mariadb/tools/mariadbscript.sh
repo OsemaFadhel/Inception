@@ -1,15 +1,26 @@
 #!/bin/bash
 
-service mariadb start
+# Start the MariaDB service
+service mysql start
 
-sleep 5
+# Create the database if it doesn't exist
+mysql -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
 
-mariadb -e "CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;"
-mariadb -e "CREATE USER IF NOT EXISTS \`${DB_USER}\`@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
-mariadb -e "GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO \`${DB_USER}\`@'%' IDENTIFIED BY '${DB_PASSWORD}';"
-mariadb -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';"
-mariadb -p${DB_ROOT_PASSWORD} -e "FLUSH PRIVILEGES;"
-mariadb-admin -u root -p${DB_ROOT_PASSWORD} shutdown
+# Create the user if it doesn't exist
+mysql -e "CREATE USER IF NOT EXISTS \`${DB_USER}\`@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
 
-exec mariadbd-safe
+# Grant all privileges to the user on the database
+mysql -e "GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO \`${DB_USER}\`@'%' IDENTIFIED BY '${DB_PASSWORD}';"
+
+# Change the root user's password
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';"
+
+# Flush privileges to ensure changes take effect
+mysql -p${DB_ROOT_PASSWORD} -e "FLUSH PRIVILEGES;"
+
+# Shut down the mysql service
+mysqladmin -u root -p${DB_ROOT_PASSWORD} shutdown
+
+# Restart MariaDB in safe mode
+exec mysqld-safe
 
