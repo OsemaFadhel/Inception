@@ -4,11 +4,11 @@ RUN apt update -y && apt upgrade -y && apt install -y nginx
 
 RUN mkdir -p /etc/nginx/ssl
 
-RUN apt install -y openssl
+RUN apt install -y Openssl
 
-COPY /conf/configuration /etc/nginx/sites-available/nginx.conf
+RUN mkdir -p /var/run/nginx
 
-RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+COPY /conf/configuration /etc/nginx/nginx.conf
 
 RUN chmod 755 /var/www/html
 
