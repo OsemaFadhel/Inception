@@ -1,6 +1,6 @@
 events {}
 
-server {
+http {
     include /etc/nginx/mime.types;
     listen [::]:443 default ssl;
 
