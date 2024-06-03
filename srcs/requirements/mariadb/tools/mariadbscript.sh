@@ -23,7 +23,7 @@ mariadb -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';"
 
 # Flush privileges to ensure changes take effect
 echo "Flushing privileges..."
-mariadb  -e "FLUSH PRIVILEGES;"
+mariadb -p${DB_ROOT_PASSWORD} -e "FLUSH PRIVILEGES;"
 
 # Shut down the mariadb service
 echo "Shutting down MariaDB service..."
