@@ -13,7 +13,7 @@ http {
 
         ssl_protocols TLSv1.2 TLSv1.3;
 
-        root /var/www/wordpress;
+        root /var/www/html;
         index index.html index.htm index.php;
 
         server_name domain_name;

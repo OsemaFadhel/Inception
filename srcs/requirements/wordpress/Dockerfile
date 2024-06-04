@@ -8,11 +8,9 @@ RUN apt update -y && apt upgrade -y && apt install -y php7.4 \
 		mariadb-client \
 		wget
 
-RUN wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www && \
-	tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www && \
-	rm -rf /var/www/wordpress-6.4.3.tar.gz
+RUN mkdir -p /var/www/html
 
-RUN chown -R root:root /var/www/wordpress
+RUN chown -R root:root /var/www/html
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 	chmod +x wp-cli.phar && \

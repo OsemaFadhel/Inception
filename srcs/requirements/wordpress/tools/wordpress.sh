@@ -2,7 +2,7 @@
 
 sleep 30
 
-cd /var/www/wordpress
+cd /var/www/html
 
 wp config create	--allow-root \
 					--dbname=$DB_NAME \
@@ -18,6 +18,6 @@ wp core install	--allow-root \
 				--admin_password=$WP_ADMIN_PASSWORD \
 				--admin_email=$WP_ADMIN_EMAIL \
 				--skip-email \
-				--path='/var/www/wordpress' \
+				--path='/var/www/html/wordpress' \
 
 /usr/sbin/php-fpm7.4 -F
