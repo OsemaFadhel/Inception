@@ -10,9 +10,9 @@ RUN mkdir -p /var/run/nginx
 
 COPY /conf/configuration /etc/nginx/nginx.conf
 
-RUN chmod 755 /var/www/html
+RUN chmod 755 /var/www/wordpress
 
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/wordpress
 
 COPY tools/nginxscript.sh /usr/local/bin/nginxscript.sh
 
