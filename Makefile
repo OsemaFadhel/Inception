@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/04 18:06:28 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/04 18:11:50 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ all:
 	@echo "Creating env file..."
 	@touch srcs/.env
 	@echo "USER=$(USER)" >> ./srcs/.env
-	@echo "CERTS_=/etc/ssl/certs/nginx.crt" >> ./srcs/.env
+	@echo "CERTS=/etc/ssl/certs/nginx.crt" >> ./srcs/.env
 	@echo "KEYS=/etc/ssl/certs/nginx.key" >> ./srcs/.env
 	@echo "DOMAIN_NAME=$(USER).42.fr" >> ./srcs/.env
 	@fill_env_var() { \
