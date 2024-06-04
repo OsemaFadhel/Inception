@@ -9,7 +9,7 @@ services:
         ports:
             - '443:443'
         volumes:
-            - wordpress:/var/www/html
+            - wordpress:/var/www/wordpress
         env_file:
             - .env
         restart : unless-stopped
@@ -33,7 +33,7 @@ services:
         depends_on:
             - mariadb
         volumes:
-            - wordpress:/var/www/html
+            - wordpress:/var/www/wordpress
         env_file:
             - .env
         restart : unless-stopped
