@@ -9,8 +9,8 @@ RUN apt update -y && apt upgrade -y && apt install -y php7.4 \
 		wget
 
 RUN wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www/html && \
-	tar -xvf /var/www/wordpress-6.4.3.tar.gz -C /var/www/html && \
-	rm -rf /var/www/wordpress-6.4.3.tar.gz
+	tar -xvf /var/www/html/wordpress-6.4.3.tar.gz -C /var/www/html && \
+	rm -rf /var/www/html/wordpress-6.4.3.tar.gz
 
 RUN chown -R root:root /var/www/html
 
