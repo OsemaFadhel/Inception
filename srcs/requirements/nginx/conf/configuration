@@ -1,26 +1,24 @@
 events {}
 
 http {
-    include /etc/nginx/mime.types;
-}
 
-server {
+    include /etc/nginx/mime.types;
+
+    server {
         listen 443 ssl;
         listen [::]:443 ssl;
 
         ssl_certificate /etc/nginx/ssl/nginx.crt;
         ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
-        ssl_protocols TLSv1.3;
+        ssl_protocols TLSv1.2 TLSv1.3;
 
         root /var/www/wordpress;
         index index.html index.htm index.php;
 
-        proxy_redirect http://domain_name:443/ https://domain_name.com/
-
         server_name domain_name;
         location / {
-            try_files $uri =404;
+            try_files $uri $uri/ /index.php?$query_string;
         }
 
         location ~ \.php$ {
@@ -28,3 +26,4 @@ server {
             fastcgi_pass wordpress:9000;
         }
     }
+}
