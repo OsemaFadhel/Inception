@@ -9,7 +9,7 @@ wp config create	--allow-root \
 					--dbuser=$DB_USER \
 					--dbpass=$DB_PASSWORD \
 					--dbhost=mariadb:3306 \
-					--path='/var/www/wordpress'
+					--path='/var/www/html/wordpress'
 
 wp core install	--allow-root \
 				--url=$DOMAIN_NAME \
@@ -18,6 +18,6 @@ wp core install	--allow-root \
 				--admin_password=$WP_ADMIN_PASSWORD \
 				--admin_email=$WP_ADMIN_EMAIL \
 				--skip-email \
-				--path='/var/www/html' \
+				--path='/var/www/html/wordpress' \
 
 /usr/sbin/php-fpm7.4 -F
