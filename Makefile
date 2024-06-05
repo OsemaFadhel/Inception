@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/05 09:32:48 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/05 15:25:30 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,10 @@ all:
 	fill_env_var "Enter your wp_title" "WP_TITLE"; \
 	fill_env_var "Enter your wp_admin" "WP_ADMIN"; \
 	fill_env_var "Enter your wp_admin_password" "WP_ADMIN_PASSWORD"; \
-	fill_env_var "Enter your wp_admin_email" "WP_ADMIN_EMAIL";
+	fill_env_var "Enter your wp_admin_email" "WP_ADMIN_EMAIL"; \
+	fill_env_var "Enter your wp user" "WP_USER"; \
+	fill_env_var "Enter your wp user password" "WP_USER_PASSWORD"; \
+	fill_env_var "Enter your wp user email" "WP_USER_EMAIL";
 	@echo "\033[0;33mCHECK THAT EMAIL IS IN THE RIGHT FORMAT!!!\033[0m"
 	@echo ".env file created successfully."
 
