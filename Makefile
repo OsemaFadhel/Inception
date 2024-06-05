@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/04 18:11:50 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/05 09:32:48 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ all:
 	sudo sed -i 's/127.0.0.1 localhost/127.0.0.1 localhost $(USER).42.fr/' /etc/hosts
 
 	sed -i "s/user_to_change/${USER}/g" "srcs/docker-compose.yml"
-	sudo docker-compose -f srcs/docker-compose.yml up -d
+	sudo docker-compose -f srcs/docker-compose.yml up --build -d
 
 
 
