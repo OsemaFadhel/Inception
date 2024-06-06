@@ -4,7 +4,7 @@ This project aims to broaden your knowledge of system administration by using Do
 You will virtualize several Docker images, creating them in your new personal virtual
 machine.
 
-<h2 align="center"> <img src="https://github.com/OsemaFadhel/Inception/img/inc.png" width="300" height="380" /> </h2>
+<h2 align="center"> <img src="https://github.com/OsemaFadhel/Inception/tree/main/img/inc.png" width="300" height="380" /> </h2>
 
 # How Docker and Docker Compose Work
 
