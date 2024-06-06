@@ -48,13 +48,13 @@ volumes:
         driver: local
         driver_opts:
             type: none
-            device: '/home/fazzel/data/mariadb'
+            device: '/home/user_to_change/data/mariadb'
             o: bind
     wordpress:
         driver: local
         driver_opts:
             type: none
-            device: '/home/fazzel/data/wordpress'
+            device: '/home/user_to_change/data/wordpress'
             o: bind
 
 networks:
