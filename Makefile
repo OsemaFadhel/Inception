@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/05 15:25:30 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/06 07:09:14 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,6 @@ all:
 
 
 down:
-	docker stop $(docker ps -qa); docker rm $(docker ps -qa); \
-	docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q); \
-	docker network rm $(docker network ls -q) 2>/dev/null
+	sudo docker-compose -f srcs/docker-compose.yml down -v --remove-orphans --rmi all
 	rm -rf /home/$(USER)/data/mariadb /home/$(USER)/data/wordpress
 	rm -rf srcs/.env
