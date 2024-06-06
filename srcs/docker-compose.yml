@@ -13,7 +13,7 @@ services:
             - wordpress:/var/www/html
         env_file:
             - .env
-        restart : on-failure
+        restart : unless-stopped
         networks:
             - inception
 
@@ -39,7 +39,7 @@ services:
             - wordpress:/var/www/html
         env_file:
             - .env
-        restart : on-failure
+        restart : unless-stopped
         networks:
             - inception
 
