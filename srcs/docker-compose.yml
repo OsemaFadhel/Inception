@@ -13,7 +13,7 @@ services:
             - wordpress:/var/www/html
         env_file:
             - .env
-        restart : always
+        restart : unless-stopped
         networks:
             - inception
 
@@ -25,7 +25,7 @@ services:
             - .env
         volumes:
             - mariadb:/var/lib/mysql
-        restart : always
+        restart : unless-stopped
         networks:
             - inception
 
@@ -39,7 +39,7 @@ services:
             - wordpress:/var/www/html
         env_file:
             - .env
-        restart : always
+        restart : unless-stopped
         networks:
             - inception
 
