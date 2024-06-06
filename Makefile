@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/06 19:18:12 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/06 22:12:58 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ all:
 	sed -i "s/user_to_change/${USER}/g" "srcs/docker-compose.yml"
 	sudo docker-compose -f srcs/docker-compose.yml up --build -d
 
-
+up:
+	sudo docker-compose -f srcs/docker-compose.yml up --build -d
 
 down:
 	sudo docker-compose -f srcs/docker-compose.yml down -v --remove-orphans --rmi all
