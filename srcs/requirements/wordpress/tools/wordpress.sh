@@ -23,7 +23,7 @@ wp core install	--allow-root \
 				|| { echo "wp core install create failed"; exit 1; }
 
 wp theme install hestia --activate --allow-root --path="/var/www/html" \
-				|| { echo "wp theme install failed" }
+				|| { echo "wp theme install failed"; }
 
 
 wp user create	$WP_USER \
