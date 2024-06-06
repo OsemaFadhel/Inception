@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/06 16:11:18 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/06 19:18:12 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,13 @@ all:
 	fill_env_var "Enter your wp user" "WP_USER"; \
 	fill_env_var "Enter your wp user password" "WP_USER_PASSWORD"; \
 	fill_env_var "Enter your wp user email" "WP_USER_EMAIL";
-	@echo "\033[0;33mCHECK THAT EMAIL IS IN THE RIGHT FORMAT!!!\033[0m"
 	@echo ".env file created successfully."
+	@echo "\033[0;33mCHECK THAT EMAIL IS IN THE RIGHT FORMAT!!!\033[0m"
+	@read -p "Do you want to continue? [y/n]: " answer; \
+	if [ "$$answer" != "y" ]; then \
+		rm -rf srcs/.env; \
+		exit 1; \
+	fi
 
 	mkdir /home/$(USER)/data/mariadb
 	mkdir /home/$(USER)/data/wordpress

@@ -9,7 +9,8 @@ wp config create	--allow-root \
 					--dbuser=$DB_USER \
 					--dbpass=$DB_PASSWORD \
 					--dbhost=mariadb:3306 \
-					--path='/var/www/html'
+					--path='/var/www/html' \
+					|| { echo "wp config create failed"; exit 1; }
 
 wp core install	--allow-root \
 				--url=$DOMAIN_NAME \
@@ -19,8 +20,10 @@ wp core install	--allow-root \
 				--admin_email=$WP_ADMIN_EMAIL \
 				--skip-email \
 				--path='/var/www/html' \
+				|| { echo "wp core install create failed"; exit 1; }
 
-wp theme install hestia --activate --path="/var/www/html"
+wp theme install hestia --activate --allow-root --path="/var/www/html" \
+				|| { echo "wp theme install failed" }
 
 
 wp user create	$WP_USER \
@@ -28,6 +31,7 @@ wp user create	$WP_USER \
 				--role=author \
 				--user_pass=$WP_USER_PASSWORD \
 				--path='/var/www/html' \
-				--allow-root
+				--allow-root \
+
 
 /usr/sbin/php-fpm7.4 -F
