@@ -20,10 +20,14 @@ wp core install	--allow-root \
 				--skip-email \
 				--path='/var/www/html' \
 
+wp theme install hestia --activate --path="/var/www/html"
+
+
 wp user create	$WP_USER \
 				$WP_USER_EMAIL \
 				--role=author \
 				--user_pass=$WP_USER_PASSWORD \
-				--path='/var/www/html'
+				--path='/var/www/html' \
+				--allow-root
 
 /usr/sbin/php-fpm7.4 -F

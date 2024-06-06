@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/06 07:09:14 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/06 16:11:18 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ all:
 	@echo "Creating env file..."
 	@touch srcs/.env
 	@echo "USER=$(USER)" >> ./srcs/.env
-	@echo "CERTS=/etc/ssl/certs/nginx.crt" >> ./srcs/.env
-	@echo "KEYS=/etc/ssl/certs/nginx.key" >> ./srcs/.env
+	@echo "CERTS=/etc/nginx/ssl/nginx.crt" >> ./srcs/.env
+	@echo "KEYS=/etc/nginx/ssl/nginx.key" >> ./srcs/.env
 	@echo "DOMAIN_NAME=$(USER).42.fr" >> ./srcs/.env
 	@fill_env_var() { \
 		read -p "$$1: " value; \
@@ -49,7 +49,7 @@ all:
 	sudo chown -R $(whoami):$(whoami) /home/$(USER)/data/wordpress
 	sudo chmod -R 755 /home/$(USER)/data/wordpress
 	sudo chmod -R 755 /home/$(USER)/data/mariadb
-	sudo sed -i 's/127.0.0.1 localhost/127.0.0.1 localhost $(USER).42.fr/' /etc/hosts
+	sudo sed -i 's/127.0.0.1	localhost/127.0.0.1	localhost $(USER).42.fr/' /etc/hosts
 
 	sed -i "s/user_to_change/${USER}/g" "srcs/docker-compose.yml"
 	sudo docker-compose -f srcs/docker-compose.yml up --build -d
