@@ -6,7 +6,7 @@
 #    By: ofadhel <ofadhel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 18:31:42 by ofadhel           #+#    #+#              #
-#    Updated: 2024/06/06 22:12:58 by ofadhel          ###   ########.fr        #
+#    Updated: 2024/06/07 14:31:17 by ofadhel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,5 +64,5 @@ up:
 
 down:
 	sudo docker-compose -f srcs/docker-compose.yml down -v --remove-orphans --rmi all
-	rm -rf /home/$(USER)/data/mariadb /home/$(USER)/data/wordpress
-	rm -rf srcs/.env
+	sudo rm -rf /home/$(USER)/data/mariadb /home/$(USER)/data/wordpress
+	sudo rm -rf srcs/.env
