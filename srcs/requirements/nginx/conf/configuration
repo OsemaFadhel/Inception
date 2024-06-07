@@ -11,7 +11,7 @@ http {
         ssl_certificate /etc/nginx/ssl/nginx.crt;
         ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
-        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_protocols TLSv1.3;
 
         root /var/www/html;
         index index.html index.htm index.php;
