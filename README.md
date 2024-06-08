@@ -1,8 +1,11 @@
-# Inception
+<h1 align="center">  Inception </h1>
 
 This project aims to broaden your knowledge of system administration by using Docker.
 You will virtualize several Docker images, creating them in your new personal virtual
-machine.
+machine. 
+<h4 align="left"> REAAD THE SUBJECT TO UNDERSTAND THE PROJECT STRUCTURE: </h4> 
+
+[SUBJECT](https://github.com/OsemaFadhel/Inception/blob/main/Inception-subject.pdf) </h4>
 
 <h2 align="center"> <img src="https://github.com/OsemaFadhel/Inception/blob/main/img/inc.png" width="400" height="500" /> </h2>
 
@@ -53,6 +56,17 @@ You can create custom networks where you can control how containers communicate.
 You can connect containers to a network so they can talk to each other.
 
 - For instance, running docker run --network my_network my_container connects my_container to the my_network network.
+
+# Simple Explanation of Docker Volumes
+
+Docker Volumes are a way to persist data generated and used by Docker containers. They allow you to store data outside of the container's filesystem, ensuring that the data remains available even if the container is deleted or updated.
+
+<h3>Key Points:</h3>
+
+- Persistence: Data in volumes is not tied to the lifecycle of a container, meaning it remains even if the container is stopped or removed.
+- Sharing Data: Volumes can be shared between multiple containers, making it easy to manage shared data.
+- Isolation from Container Filesystem: Volumes are managed by Docker and stored outside the container’s writable layer, providing better performance and flexibility.
+
 
 # What is Nginx?
 
